@@ -3,6 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
     <style>
         body {
             margin: 0;
@@ -631,7 +643,7 @@
             // 첫 번째 차트: 인플루엔자 발생률
             const option1 = {
                 title: {
-                    text: 'Age-grouped ILI',
+                    text: '인플루엔자 의사환자 분율',
                     left: 'center'
                 },
                 tooltip: {
@@ -726,8 +738,22 @@
             // 두 번째 차트: Rt
             const option2 = {
                 title: {
-                    text: 'Age-grouped Rt',
-                    left: 'center'
+                    text: '{normal|R̂}{sub|j}{normal|(t)}',
+                    left: 'center',
+                    textStyle: {
+                        fontSize: 16,
+                        fontWeight: 'bold',
+                        fontStyle: 'italic',
+                        rich: {
+                            normal: {
+                                fontSize: 16
+                            },
+                            sub: {
+                                fontSize: 12,
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -823,6 +849,7 @@
             // 차트 설정
             chart1.setOption(option1);
             chart2.setOption(option2);
+
 
             // 차트 연결
             chart1.group = 'group1';
